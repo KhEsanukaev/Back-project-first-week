@@ -14,6 +14,7 @@ app.use("/images", express.static(path.resolve(__dirname, "images")))
 //
 
 app.use(require("./routes/peopleC.router"))
+app.use(require("./routes/transport.router"))
 //
 
 mongoose.connect("mongodb+srv://mitkorol90:mitkorol90@cluster0.zpgt7p8.mongodb.net/Project-first-week")
