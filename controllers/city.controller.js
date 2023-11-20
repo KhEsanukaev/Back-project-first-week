@@ -12,14 +12,11 @@ module.exports.citiesController = {
   },
 
   addCity: async (req, res) => {
-    const { name, description, price, place } = req.body;
+    const { name } = req.body;
 
     try {
       const cities = await Cities.create({
         name,
-        description,
-        price,
-        place,
       });
 
       return res.json(cities);

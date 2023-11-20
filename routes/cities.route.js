@@ -6,7 +6,7 @@ const { citiesController } = require('../controllers/city.controller')
 const router = Router()
 
 router.get('/cities', citiesController.getCities)
-router.post('/cities', citiesController.addCity)
+router.post('/city', citiesController.addCity)
 
 
 
