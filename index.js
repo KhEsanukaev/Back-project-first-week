@@ -12,6 +12,7 @@ app.use(cors())
 app.use("/images", express.static(path.resolve(__dirname, "images")))
 
 //
+
 app.use(require("./routes/peopleC.router"))
 //
 
