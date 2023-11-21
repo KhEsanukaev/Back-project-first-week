@@ -10,11 +10,8 @@ app.use(express.json())
 app.use(cors())
 
 app.use("/images", express.static(path.resolve(__dirname, "images")))
-
-// test
 app.use(require('./routes/cities.route'))
 
-//
 
 mongoose.connect("mongodb+srv://mitkorol90:mitkorol90@cluster0.zpgt7p8.mongodb.net/Project-first-week")
 
