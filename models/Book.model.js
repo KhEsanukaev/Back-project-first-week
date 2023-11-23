@@ -2,14 +2,15 @@ const mongoose = require('mongoose')
 
 
 const bookSchema =  mongoose.Schema({
-    autor: String,
+    author: String,
     name: String,
     categoryId:  {
         type: mongoose.SchemaTypes.ObjectId,
-        ref: 'Category'
+        ref: 'Categories'
     },
     price: Number,
     description: String,
+    content: String,
     image: String,
     data: String,
     numbersOfPages: Number,

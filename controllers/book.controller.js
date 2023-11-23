@@ -3,7 +3,7 @@ const Books = require("../models/Book.model");
 module.exports.booksController = {
   getBooks: async (req, res) => {
     try {
-      const books = await Books.find();
+      const books = await Books.find().populate("categoryId");
 
       return res.json(books);
     } catch (e) {
@@ -12,10 +12,11 @@ module.exports.booksController = {
   },
 
   addBook: async (req, res) => {
-    const { author, name, categoryId, price, description, image, data, numbersOfPages, ageRestriction } = req.body;
+    const { content,author, name, categoryId, price, description, image, data, numbersOfPages, ageRestriction } = req.body;
 
     try {
       const books = await Books.create({
+        content,
         author,
         name,
         categoryId,
