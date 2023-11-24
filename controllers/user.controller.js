@@ -1,28 +1,19 @@
 const User = require("../models/User.model")
 const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
+const Basket = require("../models/Basket.model");
 
 module.exports.userController = {
-    createUser: async(req,res) => {
-        try {
-            const data = await User.create({
-                login: req.body.login,
-                password: req.body.password,
-                avatar: req.file.path
-            })
-            
-            return res.json(data)
-        } catch (error) {
-            return res.status(401).json(`Уже есть картинка ${error.message}`)
-        }
-    },
-    
+
     registerUser: async(req,res) => {
         console.log(req.files);
         const {login,password} = req.body;
         const hash = await bcrypt.hash(password, Number(process.env.BCRYPT_ROUNDS))
-        const users = await User.create({login, avatar:req.file.path, password:hash})
-        return res.json(users)
+        const user = await User.create({login, avatar:req.file.path, password:hash})
+
+        const basket = await Basket.create({user: user._id})
+        console.log(basket);
+        return res.json(user)
     },
 
     loginUser: async(req,res) => {
