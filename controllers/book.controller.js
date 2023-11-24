@@ -26,7 +26,6 @@ module.exports.booksController = {
         data,
         numbersOfPages,
         ageRestriction
-
       });
 
       return res.json(books);
