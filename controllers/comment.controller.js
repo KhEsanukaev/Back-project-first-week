@@ -12,13 +12,13 @@ module.exports.commentsController = {
   },
 
   addComments: async (req, res) => {
-    const { text, newsId, userId } = req.body
+    const { text, bookId } = req.body
 
     try {
       const comments = await Comments.create({
         text,
-        userId,
-        newsId,
+        userId: req.user.id,
+        bookId,
       }) 
 
       const newComment = await Comments.findById(comments._id).populate('userId')
@@ -31,7 +31,7 @@ module.exports.commentsController = {
 
   getComments: async (req, res) => {
     try {
-      const comments = await Comments.find().populate('userId');
+      const comments = await Comments.find({bookId: req.params.id}).populate('userId');
 
       return res.json(comments);
     } catch (e) {
