@@ -33,8 +33,17 @@ module.exports.basketController = {
   deleteBook: async (req, res) => {
     const { id } = req.params;
     try {
-      const book = await Basket.findByIdAndDelete(id);
-      return res.json(book);
+      const book = await Book.findById(id)
+      const basket = await Basket.findOneAndUpdate(
+        {user: req.user.id}, 
+        {
+          $pull: {books : id},
+        },
+        {new: true}
+      );
+
+      const newBasket = await Basket.findOne({user: req.user.id}).populate('books')
+      return res.json(newBasket);
     } catch (e) {
       return res.status(500).json({ message: "Internal server error" });
     }
