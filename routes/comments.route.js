@@ -1,14 +1,15 @@
 
 const { Router } = require('express')
 const { commentsController } = require('../controllers/comment.controller')
+const authMiddleware = require('../middleware/auth.middleware')
 
 
 
 const router = Router()
 
-router.get('/comments', commentsController.getComments)
-router.delete('/comments', commentsController.deleteComments)
-router.post('/comments', commentsController.addComments)
+router.get('/comments/:id', commentsController.getComments)
+router.delete('/comments/:id',authMiddleware, commentsController.deleteComments)
+router.post('/comments', authMiddleware, commentsController.addComments)
 
 
 
