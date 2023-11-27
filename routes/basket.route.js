@@ -7,8 +7,7 @@ const router = Router()
 
 router.get("/basket",authMiddleware, basketController.getBasket )
 router.patch("/basket/:bookId", authMiddleware,basketController.addBookInBasket)
-router.delete("/basket/:id", basketController.deleteBook)
-
+router.patch("/basketUp/:id", authMiddleware, basketController.deleteBook)
 
 
 module.exports = router
