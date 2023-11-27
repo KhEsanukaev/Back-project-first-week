@@ -8,7 +8,7 @@ const authMiddleware = require('../middleware/auth.middleware')
 const router = Router()
 
 router.get('/comments/:id', commentsController.getComments)
-router.delete('/comments',authMiddleware, commentsController.deleteComments)
+router.delete('/comments/:id',authMiddleware, commentsController.deleteComments)
 router.post('/comments', authMiddleware, commentsController.addComments)
 
 
