@@ -12,7 +12,7 @@ module.exports.booksController = {
   },
 
   addBook: async (req, res) => {
-    const { content,author, name, categoryId, price, description, image, data, numbersOfPages, ageRestriction } = req.body;
+    const { content, author, name, categoryId, price, description, image, data, numbersOfPages, ageRestriction } = req.body;
 
     try {
       const books = await Books.create({
